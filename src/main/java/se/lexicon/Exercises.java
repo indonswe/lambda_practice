@@ -4,6 +4,8 @@ import se.lexicon.data.DataStorage;
 import se.lexicon.data.DataStorageImpl;
 import se.lexicon.model.Person;
 
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -25,7 +27,7 @@ public class Exercises {
 
         //Write your code here
 
-        System.out.println("----------------------");
+        //System.out.println("----------------------");
     }
 
     /*
@@ -34,8 +36,8 @@ public class Exercises {
     public static void exercise2(String message){
         System.out.println(message);
         //Write your code here
-
-        System.out.println("----------------------");
+        List<Person> res = storage.findMany(p->p.getGender().equals("Female"));
+        System.out.println(res);
     }
 
     /*
@@ -44,7 +46,9 @@ public class Exercises {
     public static void exercise3(String message){
         System.out.println(message);
         //Write your code here
-
+        ChronoLocalDate localD = LocalDate.parse("1999-12-31");
+        List<Person> res = storage.findMany(p->p.getBirthDate().isAfter(localD));
+        System.out.println(res);
         System.out.println("----------------------");
     }
 
@@ -54,7 +58,9 @@ public class Exercises {
     public static void exercise4(String message){
         System.out.println(message);
         //Write your code here
-
+        Person res = storage.findOne(p->p.getId()== 123);
+        System.out.println(res);
+        System.out.println("----------------------");
         System.out.println("----------------------");
 
     }
