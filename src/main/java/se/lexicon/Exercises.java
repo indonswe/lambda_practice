@@ -72,7 +72,6 @@ public class Exercises {
         //Write your code here
         String res = storage.findOneAndMapToString(p->p.getId()== 456,(person -> "Name: " + person.getFirstName() + " " +
                 person.getLastName() + " born " + person.getBirthDate()));
-        //String res = storage.findOneAndMapToString(p->p.getId()== 456,p-> String.valueOf(p.getId()== 456));
         System.out.println(res);
 
         System.out.println("----------------------");
@@ -84,6 +83,9 @@ public class Exercises {
     public static void exercise6(String message){
         System.out.println(message);
         //Write your code here
+        List <String> res = storage.findManyAndMapEachToString(p->p.getFirstName().startsWith("E"),(person -> "Name: " + person.getFirstName() + " " +
+                person.getLastName() + " born " + person.getBirthDate()));
+        System.out.println(res);
 
         System.out.println("----------------------");
     }
