@@ -36,10 +36,10 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public List<Person> findMany(Predicate<Person> filter) {
-        System.out.println(filter);
+
         List<Person> result = new ArrayList<>();
         for(Person person : personList){
-            //System.out.println(person);
+
             if(filter.test(person)){
                 result.add(person);
             }
@@ -62,7 +62,15 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public String findOneAndMapToString(Predicate<Person> filter, Function<Person, String> personToString){
-        return null;
+        String result = null;
+        //List<Person> result = new ArrayList<>();
+        for(Person person : personList){
+            //System.out.println(person);
+            if(filter.test(person)){
+                result = personToString.apply(person);
+            }
+        }
+        return result;
     }
 
     @Override

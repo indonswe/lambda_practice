@@ -25,9 +25,7 @@ public class Exercises {
         //List<Person> result = storage.findMany(Predicate.isEqual("Erik"));
         System.out.println(res);
 
-        //Write your code here
 
-        //System.out.println("----------------------");
     }
 
     /*
@@ -36,7 +34,7 @@ public class Exercises {
     public static void exercise2(String message){
         System.out.println(message);
         //Write your code here
-        List<Person> res = storage.findMany(p->p.getGender().equals("Female"));
+        List<Person> res = storage.findMany(p->p.getGender().equals("FEMALE"));
         System.out.println(res);
     }
 
@@ -72,6 +70,10 @@ public class Exercises {
     public static void exercise5(String message){
         System.out.println(message);
         //Write your code here
+        String res = storage.findOneAndMapToString(p->p.getId()== 456,(person -> "Name: " + person.getFirstName() + " " +
+                person.getLastName() + " born " + person.getBirthDate()));
+        //String res = storage.findOneAndMapToString(p->p.getId()== 456,p-> String.valueOf(p.getId()== 456));
+        System.out.println(res);
 
         System.out.println("----------------------");
     }
