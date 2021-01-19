@@ -2,12 +2,15 @@ package se.lexicon;
 
 import se.lexicon.data.DataStorage;
 import se.lexicon.data.DataStorageImpl;
+import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 import java.util.function.Predicate;
+
+import static jdk.nashorn.internal.objects.NativeArray.reverse;
 
 public class Exercises {
 
@@ -34,7 +37,7 @@ public class Exercises {
     public static void exercise2(String message){
         System.out.println(message);
         //Write your code here
-        List<Person> res = storage.findMany(p->p.getGender().equals("FEMALE"));
+        List<Person> res = storage.findMany(p->p.getGender().equals(Gender.FEMALE));
         System.out.println(res);
     }
 
@@ -97,7 +100,10 @@ public class Exercises {
     public static void exercise7(String message){
         System.out.println(message);
         //Write your code here
-
+        ChronoLocalDate localD = LocalDate.parse("2011-01-17");
+        List <String> res = storage.findManyAndMapEachToString(p->p.getBirthDate().isBefore(localD),(person -> "Name: " + person.getFirstName() + " " +
+                person.getLastName() + " born " + person.getBirthDate()));
+        System.out.println(res);
         System.out.println("----------------------");
     }
 
@@ -107,6 +113,8 @@ public class Exercises {
     public static void exercise8(String message){
         System.out.println(message);
         //Write your code here
+        storage.findAndDo(p->p.getFirstName().equals("Ulf"),(person -> System.out.println("Name: " + person.getFirstName() + " " +
+                person.getLastName() + " born " + person.getBirthDate())));
 
         System.out.println("----------------------");
     }
@@ -117,7 +125,8 @@ public class Exercises {
     public static void exercise9(String message){
         System.out.println(message);
         //Write your code here
-
+        storage.findAndDo(p->p.getFirstName().contains(p.getLastName()),(person -> System.out.println("Name: " + person.getFirstName() + " " +
+                person.getLastName() + " born " + person.getBirthDate())));
         System.out.println("----------------------");
     }
 
@@ -126,8 +135,12 @@ public class Exercises {
      */
     public static void exercise10(String message){
         System.out.println(message);
+        //StringBuffer sbr = new StringBuffer(str);
+        // To reverse the string
+        //sbr.reverse();
         //Write your code here
-
+        storage.findAndDo(p->p.getFirstName().equals(reverse(new StringBuffer(p.getFirstName()))),(person -> System.out.println("Name: " + person.getFirstName() + " " +
+                person.getLastName())));
         System.out.println("----------------------");
     }
 
