@@ -101,7 +101,7 @@ public class Exercises {
         System.out.println(message);
         //Write your code here
         ChronoLocalDate localD = LocalDate.parse("2011-01-17");
-        List <String> res = storage.findManyAndMapEachToString(p->p.getBirthDate().isBefore(localD),(person -> "Name: " + person.getFirstName() + " " +
+        List <String> res = storage.findManyAndMapEachToString(p->p.getBirthDate().isAfter(localD),(person -> "Name: " + person.getFirstName() + " " +
                 person.getLastName() + " born " + person.getBirthDate()));
         System.out.println(res);
         System.out.println("----------------------");
@@ -139,7 +139,7 @@ public class Exercises {
         // To reverse the string
         //sbr.reverse();
         //Write your code here
-        storage.findAndDo(p->p.getFirstName().equals(reverse(new StringBuffer(p.getFirstName()))),(person -> System.out.println("Name: " + person.getFirstName() + " " +
+        storage.findAndDo(p->p.getFirstName().equals(((p.getFirstName()))),(person -> System.out.println("Name: " + person.getFirstName() + " " +
                 person.getLastName())));
         System.out.println("----------------------");
     }
@@ -150,6 +150,7 @@ public class Exercises {
     public static void exercise11(String message){
         System.out.println(message);
         //Write your code here
+        //storage.findAndSort(p->p.getBirthDate()::;
 
         System.out.println("----------------------");
     }
