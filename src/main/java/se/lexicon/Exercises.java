@@ -7,9 +7,11 @@ import se.lexicon.model.Person;
 
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static java.util.Objects.compare;
 import static jdk.nashorn.internal.objects.NativeArray.reverse;
 
 public class Exercises {
@@ -125,7 +127,7 @@ public class Exercises {
     public static void exercise9(String message){
         System.out.println(message);
         //Write your code here
-        storage.findAndDo(p->p.getFirstName().contains(p.getLastName()),(person -> System.out.println("Name: " + person.getFirstName() + " " +
+        storage.findAndDo(p->p.getLastName().contains(p.getFirstName()),(person -> System.out.println("Name: " + person.getFirstName() + " " +
                 person.getLastName() + " born " + person.getBirthDate())));
         System.out.println("----------------------");
     }
@@ -139,7 +141,7 @@ public class Exercises {
         // To reverse the string
         //sbr.reverse();
         //Write your code here
-        storage.findAndDo(p->p.getFirstName().equals(((p.getFirstName()))),(person -> System.out.println("Name: " + person.getFirstName() + " " +
+        storage.findAndDo(p->p.getFirstName().equals(reverse(p.getFirstName())),(person -> System.out.println("Name: " + person.getFirstName() + " " +
                 person.getLastName())));
         System.out.println("----------------------");
     }
@@ -150,9 +152,13 @@ public class Exercises {
     public static void exercise11(String message){
         System.out.println(message);
         //Write your code here
-        //storage.findAndSort(p->p.getBirthDate()::;
+        int i;
 
-        System.out.println("----------------------");
+
+        //List <Person> res = storage.findAndSort(p->p.getFirstName().startsWith("A"),(p1,p2)->p1.getBirthDate().compareTo(p2.getBirthDate()));
+        //= storage.findAndSort(p)
+        List <Person> res = storage.findAndSort(p->p.getFirstName().startsWith("A"), Comparator.comparing(Person::getBirthDate));
+
     }
 
     /*
